@@ -1,9 +1,11 @@
 let canvas;
 let ctx;
-let character = new Image();
+let character = new Character();
+let enemies = [new Chicken(), new Chicken(), new Chicken()];
 
-function init(){
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    character.src='../img/2_character_pepe/2_walk/W-21.png';
+function init() {
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+
+  console.log("my character ist", character);
 }

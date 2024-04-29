@@ -20,6 +20,7 @@ class MoveableObject {
     arr.forEach((path) => {
       let img = new Image();
       img.src = path;
+      img.style = 'transform: scaleX(-1)';
       this.imageCache[path] = img;
     });
   }
@@ -34,16 +35,16 @@ class MoveableObject {
     }, 1000 / 60);
   }
 
-  playAnimation() {
+  playAnimation(images) {
     let i = this.currentImage % this.IMAGES_WALKING.length;
-    let path = this.IMAGES_WALKING[i];
+    let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
   }
 
   applyGravity() {
     setInterval(() => {
-      if (this.isAboveGround()) {
+      if (this.isAboveGround()|| this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
       }

@@ -26,13 +26,11 @@ class MoveableObject {
   }
 
   moveRight() {
-    console.log('Moving right');
+    this.x += this.speed;
   }
 
   moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);
+    this.x -= this.speed;
   }
 
   playAnimation(images) {
@@ -53,5 +51,9 @@ class MoveableObject {
 
   isAboveGround(){
     return this.y < 160;
+  }
+
+  jump(){
+    this.speedY = 30;
   }
 }

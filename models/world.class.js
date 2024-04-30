@@ -65,7 +65,7 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) =>{
         if(this.character.isColliding(enemy)){
-          console.log(enemy);
+          this.character.hit();
         }
       })
     }, 1000);

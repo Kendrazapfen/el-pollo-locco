@@ -1,4 +1,4 @@
-class MoveableObject {
+class MoveableObject extends DrawableObject {
   x = 120;
   y = 280;
   img;
@@ -11,6 +11,7 @@ class MoveableObject {
   speedY = 0;
   acceleration = 2.5;
   energy = 100;
+  lastHit = 0;
 
   loadImage(path) {
     this.img = new Image();
@@ -21,7 +22,7 @@ class MoveableObject {
     arr.forEach((path) => {
       let img = new Image();
       img.src = path;
-      img.style = 'transform: scaleX(-1)';
+      img.style = "transform: scaleX(-1)";
       this.imageCache[path] = img;
     });
   }
@@ -35,7 +36,7 @@ class MoveableObject {
   }
 
   playAnimation(images) {
-    let i = this.currentImage % this.IMAGES_WALKING.length;
+    let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
@@ -69,8 +70,8 @@ class MoveableObject {
       this instanceof SmallChicken
     ) {
       ctx.beginPath();
-      ctx.lineWidth = '5';
-      ctx.strokeStyle = 'blue';
+      ctx.lineWidth = "5";
+      ctx.strokeStyle = "blue";
       ctx.rect(this.x, this.y, this.width, this.height);
       ctx.stroke();
     }
@@ -89,10 +90,18 @@ class MoveableObject {
     this.energy -= 5;
     if (this.energy < 0) {
       this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
     }
   }
 
   isDead() {
     return this.energy == 0;
+  }
+
+  isHurt() {
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 0.75;
   }
 }

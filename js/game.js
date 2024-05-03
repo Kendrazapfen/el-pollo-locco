@@ -3,13 +3,11 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-  canvas = document.getElementById('canvas');
-  world = new World(canvas,keyboard);
-
-  console.log('my character ist', world.character);
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
 }
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener("keydown", (e) => {
   if (e.keyCode == 39) {
     keyboard.RIGHT = true;
   }
@@ -25,9 +23,12 @@ window.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
     keyboard.SPACE = true;
   }
+  if (e.keyCode == 68) {
+    keyboard.D = true;
+  }
 });
 
-window.addEventListener('keyup', (e) => {
+window.addEventListener("keyup", (e) => {
   if (e.keyCode == 39) {
     keyboard.RIGHT = false;
   }
@@ -42,5 +43,8 @@ window.addEventListener('keyup', (e) => {
   }
   if (e.keyCode == 32) {
     keyboard.SPACE = false;
+  }
+  if (e.keyCode == 68) {
+    keyboard.D = false;
   }
 });

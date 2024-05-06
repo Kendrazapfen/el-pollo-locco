@@ -3,11 +3,11 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
 }
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener('keydown', (e) => {
   if (e.keyCode == 39) {
     keyboard.RIGHT = true;
   }
@@ -28,7 +28,7 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-window.addEventListener("keyup", (e) => {
+window.addEventListener('keyup', (e) => {
   if (e.keyCode == 39) {
     keyboard.RIGHT = false;
   }

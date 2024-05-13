@@ -6,7 +6,10 @@ class World {
   keyboard;
   camera_x = 0;
   statusbar = new Statusbar();
+  statusbarCoins = new StatusbarCoins();
+  statusbarBottles = new StatusbarBottles();
   coin = new Coins();
+  bottle = new Bottle();
   throwableObject = [];
 
   constructor(canvas, keyboard) {
@@ -27,14 +30,16 @@ class World {
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.statusbar);
-    this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.clouds);
+    this.addToMap(this.statusbar);
+    this.addToMap(this.statusbarCoins);
+    this.addToMap(this.statusbarBottles);
+    this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.character);
     this.addObjectsToMap(this.throwableObject);
-    this.addToMap(this.coin);
-
+    this.addObjectsToMap(this.level.coin);
+    this.addObjectsToMap(this.level.bottle);
     this.ctx.translate(-this.camera_x, 0);
     let self = this;
     requestAnimationFrame(function () {
@@ -71,8 +76,10 @@ class World {
   }
 
   run() {
-    this.checkCollisionen();
-    this.checkThrowObjects();
+    setInterval(() => {
+      this.checkCollisionen();
+      this.checkThrowObjects();
+    }, 200);
   }
 
   checkCollisionen() {
@@ -86,8 +93,8 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.D) {
       let bottle = new ThrowableObject(
-        this.character.x + 100,
-        this.character.y + 100
+        this.character.x + 45,
+        this.character.y + 45
       );
       this.throwableObject.push(bottle);
     }

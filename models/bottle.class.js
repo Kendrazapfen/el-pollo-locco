@@ -1,8 +1,11 @@
-class Coins extends MoveableObject {
-  width = 100;
-  height = 100;
-  y = 300;
-  IMAGES = ['img/8_coin/coin_1.png', 'img/8_coin/coin_2.png'];
+class Bottle extends MoveableObject {
+  width = 80;
+  height = 80;
+  y = 340;
+  IMAGES = [
+    'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
+    'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
+  ];
 
   constructor() {
     super().loadImage(this.IMAGES[0]);

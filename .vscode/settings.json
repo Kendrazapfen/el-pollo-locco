@@ -1,3 +1,4 @@
 {
-  "html.completion.attributeDefaultValue": "singlequotes"
+  "html.completion.attributeDefaultValue": "singlequotes",
+  "liveServer.settings.port": 5501
 }

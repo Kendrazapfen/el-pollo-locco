@@ -9,7 +9,6 @@ class World {
   statusbarCoins = new StatusbarCoins();
   statusbarBottles = new StatusbarBottles();
   throwableObject = [];
-  itemCoin;
   collectedCoins = [];
 
   constructor(canvas, keyboard) {
@@ -89,9 +88,9 @@ class World {
         this.statusbar.setPercentage(this.character.energy);
       }
     });
-    this.itemCoin.forEach((c) => {
-      let coin = new Coins();
-      this.level.collectedCoins.push(coin);
+    this.level.coin.forEach((c) => {
+      let coin = [new Coins(), new Coins(), new Coins(), new Coins()];
+      this.collectedCoins.push(coin);
       if (this.character.isColliding(c)) {
         this.statusbarCoins.setPercentage(this.level.colletedCoins);
       }

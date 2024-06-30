@@ -17,13 +17,15 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: 'zabras';
 }
 
 h1 {
   font-family: 'zabras', Arial, Helvetica, sans-serif;
-  font-size: 32px !important;
+  font-size: 75px !important;
   letter-spacing: 3px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 50px;
 }
 
 canvas {
@@ -37,6 +39,21 @@ canvas {
   flex-direction: column;
 }
 
+.keys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.keys img {
+  width: 64px;
+  height: 64px;
+}
+
+.keys p {
+  padding-right: 10px;
+  font-size: 24px;
+}
 @media only screen and (max-width: 720px) {
   canvas {
     width: 100%;

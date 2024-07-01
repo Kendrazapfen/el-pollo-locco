@@ -90,8 +90,9 @@ class World {
     });
     this.level.coin.forEach((c) => {
       let coin = [new Coins(), new Coins(), new Coins(), new Coins()];
-      this.collectedCoins.push(coin);
+
       if (this.character.isColliding(c)) {
+        this.collectedCoins.push(coin);
         this.statusbarCoins.setPercentage(this.level.colletedCoins);
       }
     });

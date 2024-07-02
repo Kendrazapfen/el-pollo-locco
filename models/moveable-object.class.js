@@ -5,6 +5,7 @@ class MoveableObject extends DrawableObject {
   acceleration = 2.5;
   energy = 100;
   lastHit = 0;
+  coins = 0;
 
   moveRight() {
     this.x += this.speed;
@@ -68,5 +69,9 @@ class MoveableObject extends DrawableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
+  }
+
+  collectCoin() {
+    this.coins += 20;
   }
 }

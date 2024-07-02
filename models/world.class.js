@@ -9,7 +9,6 @@ class World {
   statusbarCoins = new StatusbarCoins();
   statusbarBottles = new StatusbarBottles();
   throwableObject = [];
-  collectedCoins = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -37,7 +36,7 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.character);
     this.addObjectsToMap(this.throwableObject);
-    this.addObjectsToMap(this.level.coin);
+    this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottle);
     this.ctx.translate(-this.camera_x, 0);
     let self = this;
@@ -88,14 +87,6 @@ class World {
         this.statusbar.setPercentage(this.character.energy);
       }
     });
-    this.level.coin.forEach((c) => {
-      let coin = [new Coins(), new Coins(), new Coins(), new Coins()];
-
-      if (this.character.isColliding(c)) {
-        this.collectedCoins.push(coin);
-        this.statusbarCoins.setPercentage(this.level.colletedCoins);
-      }
-    });
   }
   checkThrowObjects() {
     if (this.keyboard.D) {
@@ -105,5 +96,28 @@ class World {
       );
       this.throwableObject.push(bottle);
     }
+  }
+
+  checkCollactableCoin() {
+    this.level.coins.forEach((coin, index) => {
+      if (this.isCharacterCollectingCoin(coin)) {
+        this.characterCollectCoin(coin, index);
+      }
+    });
+  }
+
+  isCharacterCollectingCoin(coin) {
+    return this.character.isColliding(coin);
+  }
+  characterCollectCoin(coins, index) {
+    this.character.collectCoin();
+    this.statusbarCoins.setPercentage(this.character.coins);
+    this.level.coins.splice(index, 1);
+  }
+
+  run() {
+    setInterval(() => {
+      this.checkCollactableCoin();
+    }, 10);
   }
 }

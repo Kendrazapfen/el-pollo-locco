@@ -7,6 +7,10 @@ class MoveableObject extends DrawableObject {
   lastHit = 0;
   coins = 0;
 
+  collectCoin() {
+    this.coins += 20;
+  }
+
   moveRight() {
     this.x += this.speed;
   }
@@ -69,9 +73,5 @@ class MoveableObject extends DrawableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-  }
-
-  collectCoin() {
-    this.coins += 20;
   }
 }

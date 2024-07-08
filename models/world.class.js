@@ -77,6 +77,7 @@ class World {
     setInterval(() => {
       this.checkCollisionen();
       this.checkThrowObjects();
+      this.checkCollactableCoin();
     }, 200);
   }
 
@@ -100,24 +101,15 @@ class World {
 
   checkCollactableCoin() {
     this.level.coins.forEach((coin, index) => {
-      if (this.isCharacterCollectingCoin(coin)) {
+      if (this.character.isColliding(coin)) {
         this.characterCollectCoin(coin, index);
       }
     });
   }
 
-  isCharacterCollectingCoin(coin) {
-    return this.character.isColliding(coin);
-  }
-  characterCollectCoin(coins, index) {
+  characterCollectCoin(coin, index) {
     this.character.collectCoin();
     this.statusbarCoins.setPercentage(this.character.coins);
     this.level.coins.splice(index, 1);
-  }
-
-  run() {
-    setInterval(() => {
-      this.checkCollactableCoin();
-    }, 10);
   }
 }

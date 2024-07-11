@@ -37,7 +37,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.throwableObject);
     this.addObjectsToMap(this.level.coins);
-    this.addObjectsToMap(this.level.bottle);
+    this.addObjectsToMap(this.level.bottles);
     this.ctx.translate(-this.camera_x, 0);
     let self = this;
     requestAnimationFrame(function () {

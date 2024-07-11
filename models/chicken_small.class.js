@@ -3,10 +3,10 @@ class SmallChicken extends MoveableObject {
   width = 50;
   height = 50;
   offset = {
-    top: -20,
-    right: -30,
-    bottom: -20,
-    left: -10,
+    top: 0,
+    right: 5,
+    bottom: 0,
+    left: 5,
   };
 
   IMAGES_WALKING = [
@@ -18,7 +18,7 @@ class SmallChicken extends MoveableObject {
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
-    this.x = 200 + Math.random() * 500;
+    this.x = 200 + Math.random() * 1900;
     this.speed = 0.15 + Math.random() * 0.25;
     this.animate();
   }

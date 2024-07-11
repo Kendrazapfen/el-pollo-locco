@@ -3,10 +3,10 @@ class Bottle extends MoveableObject {
   height = 80;
   y = 340;
   offset = {
-    top: 60,
-    right: 80,
-    bottom: 110,
-    left: 50,
+    top: 10,
+    right: 30,
+    bottom: 0,
+    left: 20,
   };
 
   IMAGES = [
@@ -17,7 +17,7 @@ class Bottle extends MoveableObject {
   constructor() {
     super().loadImage(this.IMAGES[0]);
     this.loadImages(this.IMAGES);
-    this.x = 200 + Math.random() * 500;
+    this.x = 200 + Math.random() * 1900;
     this.animate();
   }
 

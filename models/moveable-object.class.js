@@ -6,9 +6,18 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   coins = 0;
+  bottles = 0;
 
   collectCoin() {
-    this.coins += 20;
+    this.coins += 40;
+  }
+
+  collectBottle() {
+    this.bottles += 20;
+  }
+
+  removeBottle() {
+    this.bottles -= 20;
   }
 
   moveRight() {

@@ -79,6 +79,7 @@ class World {
       this.checkCollisionen();
       this.checkThrowObjects();
       this.checkCollactableCoin();
+      this.checkCollactableBottle(); 
     }, 200);
   }
 
@@ -119,7 +120,7 @@ class World {
     });
   }
 
-  characterCollectCoin(coin, index) {
+  characterCollectCoin(index) {
     this.character.collectCoin();
     this.statusbarCoins.setPercentage(this.character.coins);
     this.level.coins.splice(index, 1);
@@ -136,7 +137,7 @@ class World {
     });
   }
 
-  characterCollectBottle(bottle, index) {
+  characterCollectBottle(index) {
     this.character.collectBottle();
     this.statusbarBottles.setPercentage(this.character.bottles);
     this.level.bottles.splice(index, 1);

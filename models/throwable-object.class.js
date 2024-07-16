@@ -1,11 +1,5 @@
 class ThrowableObject extends MoveableObject {
-  offset = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  };
-
+  releaseGravityInterval;
   height = 60;
   width = 40;
 
@@ -73,8 +67,8 @@ class ThrowableObject extends MoveableObject {
 
   releaseGravity() {
     this.releaseGravityInterval = setInterval(() => {
-      if (this.y >= 360) {
-        this.y = 365;
+      if (this.y >= 340) {
+        this.y = 345;
         this.speedY = 0;
         clearInterval(this.throwableObject);
         this.splash();
@@ -101,7 +95,6 @@ class ThrowableObject extends MoveableObject {
     }, 225);
   }
 
-  releaseGravityInterval;
   removeBottleOfMap() {
     setTimeout(() => {
       world.throwableObject.splice(0, 1);

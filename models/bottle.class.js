@@ -8,6 +8,7 @@ class Bottle extends MoveableObject {
     bottom: 0,
     left: 20,
   };
+  animationInterval;
 
   IMAGES = [
     'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
@@ -22,8 +23,9 @@ class Bottle extends MoveableObject {
   }
 
   animate() {
+    this.animationInterval =
     setInterval(() => {
       this.playAnimation(this.IMAGES);
-    }, 1000 / 5);
+    }, 1200/5);
   }
 }

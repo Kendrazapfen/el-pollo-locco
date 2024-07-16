@@ -10,7 +10,7 @@ class MoveableObject extends DrawableObject {
   applyGravityInterval;
 
   collectCoin() {
-    this.coins += 40;
+    this.coins += 20;
   }
 
   collectBottle() {
@@ -47,7 +47,7 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 30;
+    this.speedY = 20;
   }
 
   isColliding(mo) {

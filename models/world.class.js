@@ -9,6 +9,7 @@ class World {
   statusbarCoins = new StatusbarCoins();
   statusbarBottles = new StatusbarBottles();
   throwableObject = [];
+  throwingButtonPressed = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -90,13 +91,24 @@ class World {
     });
   }
   checkThrowObjects() {
-    if (this.keyboard.D) {
-      let bottle = new ThrowableObject(
-        this.character.x + 45,
-        this.character.y + 45
-      );
-      this.throwableObject.push(bottle);
+    if (this.statusbarBottles.percentage >= 19) {
+      if (this.keyboard.D && this.throwingButtonPressed == false) {
+        this.throwingButtonPressed = true;
+        let bottle = new ThrowableObject(
+          this.character.x + 60,
+          this.character.y + 73
+        );
+        this.throwableObject.push(bottle);
+        this.updateStatusbar();
+        this.character.removeBottle();
+      }
     }
+  }
+
+  updateStatusbar() {
+    let statusbar = this.statusbarBottles.percentage;
+    statusbar -= 20;
+    this.statusbarBottles.setPercentage(statusbar);
   }
 
   checkCollactableCoin() {
@@ -111,5 +123,22 @@ class World {
     this.character.collectCoin();
     this.statusbarCoins.setPercentage(this.character.coins);
     this.level.coins.splice(index, 1);
+  }
+  checkCollactableBottle() {
+    this.level.bottles.forEach((bottle, index) => {
+      if (this.character.isColliding(bottle)) {
+        if (this.statusbarBottles.percentage == 100) {
+          bottle.noCollectAwailable();
+        } else if (!this.statusbarBottles.percentage == 100) {
+          this.characterCollectBottle(bottle, index);
+        }
+      }
+    });
+  }
+
+  characterCollectBottle(bottle, index) {
+    this.character.collectBottle();
+    this.statusbarBottles.setPercentage(this.character.bottles);
+    this.level.bottles.splice(index, 1);
   }
 }

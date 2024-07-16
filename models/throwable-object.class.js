@@ -31,20 +31,80 @@ class ThrowableObject extends MoveableObject {
     this.x = x;
     this.y = y;
     this.throw();
+    this.rotateBottle();
   }
 
   throw() {
-    this.animate();
-    this.speedY = 30;
-    this.applyGravity();
-    setInterval(() => {
-      this.x += 10;
-    }, 50);
+    if (this.world.character.otherDirection) {
+      this.throwBottleToLeft();
+    } else {
+      this.throwBottleToRight();
+    }
+    setTimeout(() => {
+      world.throwingButtonPressed = false;
+    }, 1500);
   }
 
-  animate() {
-    setInterval(() => {
-      this.playAnimation(this.IMAGES_MOVING);
-    }, 1000 / 20);
+  throwBottleToLeft() {
+    this.x = this.x - 90;
+    this.y = this.y - 35;
+    this.speedY = 16;
+    this.applyGravity();
+    this.throwableObject = setInterval(() => {
+      this.rotateBottle();
+      this.x -= 18;
+    }, 30);
+    this.releaseGravity();
+  }
+
+  throwBottleToRight() {
+    this.speedY = 16;
+    this.applyGravity();
+    this.throwableObject = setInterval(() => {
+      this.rotateBottle();
+      this.x += 18;
+    }, 30);
+    this.releaseGravity();
+  }
+
+  rotateBottle() {
+    this.playAnimation(this.IMAGES_MOVING);
+  }
+
+  releaseGravity() {
+    this.releaseGravityInterval = setInterval(() => {
+      if (this.y >= 360) {
+        this.y = 365;
+        this.speedY = 0;
+        clearInterval(this.throwableObject);
+        this.splash();
+      }
+    }, 25);
+  }
+
+  splash() {
+    this.speedY = 0;
+    this.clearBottleInterval();
+    this.playAnimation(this.IMAGES_SPLASH);
+    this.removeBottleOfMap();
+  }
+
+  clearBottleInterval() {
+    clearInterval(this.throwableObject);
+    clearInterval(this.releaseGravityInterval);
+    clearInterval(this.applyGravityInterval);
+  }
+
+  removeBottleOfMap() {
+    setTimeout(() => {
+      world.throwableObject.splice(0, 1);
+    }, 225);
+  }
+
+  releaseGravityInterval;
+  removeBottleOfMap() {
+    setTimeout(() => {
+      world.throwableObject.splice(0, 1);
+    }, 225);
   }
 }

@@ -7,6 +7,7 @@ class MoveableObject extends DrawableObject {
   lastHit = 0;
   coins = 0;
   bottles = 0;
+  applyGravityInterval;
 
   collectCoin() {
     this.coins += 40;

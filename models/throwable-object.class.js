@@ -94,10 +94,4 @@ class ThrowableObject extends MoveableObject {
       world.throwableObject.splice(0, 1);
     }, 225);
   }
-
-  removeBottleOfMap() {
-    setTimeout(() => {
-      world.throwableObject.splice(0, 1);
-    }, 225);
-  }
 }

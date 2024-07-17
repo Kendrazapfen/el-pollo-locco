@@ -79,7 +79,7 @@ class World {
       this.checkCollisionen();
       this.checkThrowObjects();
       this.checkCollactableCoin();
-      this.checkCollactableBottle(); 
+      this.checkCollactableBottle();
     }, 200);
   }
 
@@ -129,7 +129,6 @@ class World {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         if (this.statusbarBottles.percentage == 100) {
-          bottle.noCollectAwailable();
         } else if (!this.statusbarBottles.percentage == 100) {
           this.characterCollectBottle(bottle, index);
         }
